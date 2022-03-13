@@ -1,4 +1,5 @@
-﻿using ShotenerBlazor.Data;
+﻿using Microsoft.AspNetCore.HostFiltering;
+using ShotenerBlazor.Data;
 using System.Threading.Tasks;
 
 namespace ShotenerBlazor.Pages
@@ -15,6 +16,7 @@ namespace ShotenerBlazor.Pages
         private void ShortenUrl()
         {
             
+
         }
 
 
