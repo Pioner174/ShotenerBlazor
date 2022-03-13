@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ShotenerBlazor.Middleware
@@ -14,12 +15,19 @@ namespace ShotenerBlazor.Middleware
             _next = next;
         }
 
-        public Task Invoke(HttpContext httpContext)
+        public Task Invoke(HttpContext httpContext, ExpressDB db)
         {
 
-            if (httpContext.Request.Path.ToString().Length >= 9)
+            if (httpContext.Request.Path.ToString().Length == 9)
             {
-                
+                var token = httpContext.Request.Path.ToString().Substring(1);
+                var shortUrl = db.ShortUrls.FirstOrDefault(su => su.Token == token);
+                if (shortUrl != null)
+                {
+                    httpContext.Response.Redirect(shortUrl.OriginalUrl.ToString());
+                }
+                else
+                    httpContext.Response.Redirect(httpContext.Request.Host.ToString());
             }
 
             return _next(httpContext);

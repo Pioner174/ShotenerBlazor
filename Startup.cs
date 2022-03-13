@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ShotenerBlazor.Data;
+using ShotenerBlazor.Data.Interfaces;
 using ShotenerBlazor.Middleware;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,8 @@ namespace ShotenerBlazor
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddTransient<IUrlShorteningService, UrlShorteningService>();
+            services.AddSingleton<ExpressDB>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
