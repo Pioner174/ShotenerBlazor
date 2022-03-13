@@ -17,7 +17,7 @@ namespace ShotenerBlazor.Middleware
 
         public Task Invoke(HttpContext httpContext, ExpressDB db)
         {
-
+            
             if (httpContext.Request.Path.ToString().Length == 9)
             {
                 var token = httpContext.Request.Path.ToString().Substring(1);

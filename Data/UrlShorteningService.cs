@@ -16,7 +16,7 @@ namespace ShotenerBlazor.Data
             shortUrl.Token = GeneratToken();
             shortUrl.Clicks = 0;
             //Если меняется хост, тут тоже надо поменять
-            shortUrl.Value = new Uri($"http://localhost:5001/{shortUrl.Token}");
+            shortUrl.Value = new Uri($"https://localhost:5001/{shortUrl.Token}");
             return shortUrl;
 
         }

@@ -30,7 +30,7 @@ namespace ShotenerBlazor
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+            
             services.AddTransient<IUrlShorteningService, UrlShorteningService>();
             services.AddSingleton<ExpressDB>();
         }
