@@ -1,8 +1,16 @@
 ﻿@page "/"
 <h3 class="subtitle">Очень простой сокращатель ссылок!</h3>
 <EditForm Model="Url" class="banner-form" OnValidSubmit="ShortenUrl">
-    <input type="text" placeholder="Введите ссылку" name="url" required @bind-value="Url.Value">
-    <button type="submit">Сократить<i class="flaticon-startup"></i></button>
+    <div class="form-row align-items-center">
+        <div class="col-sm-3 my-1">
+          <label class="sr-only" for="inlineFormInputName">Name</label>
+          <input type="text" class="form-control" id="inlineFormInputName" placeholder="Введите ссылку" name="url" required @bind-value="Url.Value">
+        </div>
+        <div class="col-auto my-1">
+          <button type="submit" class="btn btn-primary">Сократить</button>
+        </div>
+    </div>
+    
 </EditForm>
 
 
