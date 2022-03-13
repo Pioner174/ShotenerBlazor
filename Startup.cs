@@ -48,6 +48,20 @@ namespace ShotenerBlazor
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.Use((req, next) =>
+            {
+                switch (req.Request.Path.ToString())
+                {
+                    case "/":
+                        return next();
+                    case "/admin":
+                        return next();
+                    default: req.Response.Redirect("https://github.com/Pioner174/BlazorShortLink");
+                        break;
+                }
+                return next(); 
+            });
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
