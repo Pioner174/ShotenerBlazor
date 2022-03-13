@@ -3,15 +3,19 @@ using ShotenerBlazor.Data;
 using System.Threading.Tasks;
 using ShotenerBlazor.Data.Interfaces;
 using System;
+using Microsoft.EntityFrameworkCore;
+
+
 
 namespace ShotenerBlazor.Pages
 {
     public partial class Index
     {
-        [Inject]
-        public IUrlShorteningService ShortenService { get; set; }
-        [Inject]
-        public ExpressDB Db { get; set; }
+        [Inject] public IUrlShorteningService ShortenService { get; set; }
+        
+        [Inject] public ShotenerDataContext DataContext { get; set; }
+
+
         private Url Url { get; set; }
         protected override Task OnInitializedAsync()
         {
@@ -19,11 +23,14 @@ namespace ShotenerBlazor.Pages
             return base.OnInitializedAsync();
         }
 
-        private void ShortenUrl()
+        private async void ShortenUrl()
         {
             var shortUrl = ShortenService.QuickShort( new Uri(Url.Value));
-            Db.ShortUrls.Add(shortUrl);
+            DataContext.ShortUrls.Add(shortUrl);
+            await DataContext.SaveChangesAsync();
             Url.Value = shortUrl.Value.ToString();
+            StateHasChanged();
+            
         }
 
 
