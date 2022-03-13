@@ -17,6 +17,11 @@ namespace ShotenerBlazor.Middleware
         public Task Invoke(HttpContext httpContext)
         {
 
+            if (httpContext.Request.Path.ToString().Length >= 9)
+            {
+                
+            }
+
             return _next(httpContext);
         }
     }

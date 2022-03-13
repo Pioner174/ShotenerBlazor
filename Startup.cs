@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ShotenerBlazor.Data;
+using ShotenerBlazor.Middleware;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,19 +49,7 @@ namespace ShotenerBlazor
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.Use((req, next) =>
-            {
-                switch (req.Request.Path.ToString())
-                {
-                    case "/":
-                        return next();
-                    case "/admin":
-                        return next();
-                    default: req.Response.Redirect("https://github.com/Pioner174/BlazorShortLink");
-                        break;
-                }
-                return next(); 
-            });
+            app.UseShortUrlRedirect();
 
             app.UseRouting();
 

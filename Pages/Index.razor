@@ -1,7 +1,8 @@
 ﻿@page "/"
+<h3 class="subtitle">Очень простой сокращатель ссылок!</h3>
+<EditForm Model="Url" class="banner-form" OnValidSubmit="ShortenUrl">
+    <input type="text" placeholder="Введите ссылку" name="url" required @bind-value="Url.Value">
+    <button type="submit">Сократить<i class="flaticon-startup"></i></button>
+</EditForm>
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
